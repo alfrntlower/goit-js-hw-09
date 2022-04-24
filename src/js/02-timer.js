@@ -4,6 +4,7 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
 const startBtn = document.querySelector('button[data-start]');
+const stopBtn = document.querySelector('button[data-stop]');
 const daysValue = document.querySelector('span[data-days]');
 const hoursValue = document.querySelector('span[data-hours]');
 const minutesValue = document.querySelector('span[data-minutes]');
@@ -23,8 +24,11 @@ const options = {
 const dateNow = new Date();
 const date = flatpickr('#datetime-picker', options);
 
+let intervlaId = null;
+
 dateInput.addEventListener('change', checkInputDate);
 startBtn.addEventListener('click', onStartBtnClick);
+stopBtn.addEventListener('click', onStopBtnClick);
 
 
 function onStartBtnClick(evt) {
@@ -46,17 +50,17 @@ function onStartBtnClick(evt) {
     // console.log(afterConvert);
     startTimer(dateMs, dateNowMs);
 
-    
 
 }
 
-function startTimer(dateMs,dateNowMs) {
-    setInterval(() => {
+function startTimer(dateMs, dateNowMs) {
+    
+    intervlaId = setInterval(() => {
         let deltaMs = dateMs - dateNowMs;
         console.log(convertMs(deltaMs));
         updateClockface(convertMs(deltaMs));
         }, 1000);
-
+    return;
 }
 
 function checkInputDate() {
@@ -66,10 +70,17 @@ function checkInputDate() {
 
     if (dateMs < dateNowMs) {
         window.alert("Please choose a date in the future");
-        changeBtnStatus(true);
+        changeBtnStatus(true,false);
     } else {
-        changeBtnStatus(false);
+        changeBtnStatus(false,true);
     }
+}
+
+
+function onStopBtnClick() {
+    console.log("STOP");
+    clearInterval(intervlaId);
+    changeBtnStatus(false,true);
 }
 
 function convertMs(ms) {
@@ -95,8 +106,10 @@ function pad(value) {
     return String(value).padStart(2, '0');
 }
   
-const changeBtnStatus = (add) => {
+const changeBtnStatus = (add, remove) => {
     startBtn.disabled = add;
+    stopBtn.disabled = remove;
+
 };
 
 function updateClockface({ days, hours, minutes, seconds }) {
