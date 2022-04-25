@@ -30,7 +30,6 @@ dateInput.addEventListener('change', checkInputDate);
 startBtn.addEventListener('click', onStartBtnClick);
 stopBtn.addEventListener('click', onStopBtnClick);
 
-
 function onStartBtnClick(evt) {
 
     changeBtnStatus(true);
@@ -60,7 +59,7 @@ function startTimer(dateMs, dateNowMs) {
         console.log(convertMs(deltaMs));
         updateClockface(convertMs(deltaMs));
         }, 1000);
-    return;
+
 }
 
 function checkInputDate() {
