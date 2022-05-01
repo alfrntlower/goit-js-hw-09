@@ -35,29 +35,27 @@ function onStartBtnClick(evt) {
     changeBtnStatus(true);
 
     let dateMs = date.selectedDates[0].getTime();
+    let dateNowMs = Date.now();
 
-    let dateNowMs = dateNow.getTime();
+    //let dateNowMs = dateNow.getTime();
 
     console.log('MS :',dateMs);
-
     console.log('NOW MS:',dateNowMs);
 
     // const deltaMs = dateMs - dateNowMs;
-    
     // const afterConvert = convertMs(timerMs);
-
     // console.log(afterConvert);
-    startTimer(dateMs, dateNowMs);
 
-
+    startTimer(dateMs);
 }
 
-function startTimer(dateMs, dateNowMs) {
+function startTimer(dateMs) {
     
     intervlaId = setInterval(() => {
-        let deltaMs = dateMs - dateNowMs;
-        console.log(convertMs(deltaMs));
-        updateClockface(convertMs(deltaMs));
+        const deltaMs = dateMs - Date.now();
+        const afterConvert = convertMs(deltaMs);
+        console.log(afterConvert);
+        updateClockface(afterConvert);
         }, 1000);
 
 }
