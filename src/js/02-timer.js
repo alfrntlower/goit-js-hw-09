@@ -67,9 +67,9 @@ function checkInputDate() {
 
     if (dateMs < dateNowMs) {
         window.alert("Please choose a date in the future");
-        changeBtnStatus(true,false);
+        changeBtnStatus(true,true,false);
     } else {
-        changeBtnStatus(false,true);
+        changeBtnStatus(false,false,true);
     }
 }
 
@@ -77,7 +77,7 @@ function checkInputDate() {
 function onStopBtnClick() {
     console.log("STOP");
     clearInterval(intervlaId);
-    changeBtnStatus(false,true);
+    changeBtnStatus(false,false,true);
 }
 
 function convertMs(ms) {
@@ -103,7 +103,8 @@ function pad(value) {
     return String(value).padStart(2, '0');
 }
   
-const changeBtnStatus = (add, remove) => {
+const changeBtnStatus = (addI,add, remove) => {
+    dateInput.disabled = addI;
     startBtn.disabled = add;
     stopBtn.disabled = remove;
 
