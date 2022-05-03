@@ -56,7 +56,9 @@ function startTimer(dateMs) {
         const afterConvert = convertMs(deltaMs);
         console.log(afterConvert);
         updateClockface(afterConvert);
-        }, 1000);
+    }, 1000);
+    
+    changeBtnStatus(true,true,false);
 
 }
 
@@ -67,7 +69,7 @@ function checkInputDate() {
 
     if (dateMs < dateNowMs) {
         window.alert("Please choose a date in the future");
-        changeBtnStatus(true,true,false);
+        changeBtnStatus(false,true,false);
     } else {
         changeBtnStatus(false,false,true);
     }
