@@ -2,8 +2,8 @@ goit-js-hw-09
 
 https://alfrntlower.github.io/goit-js-hw-09/
 
-Задание 1 - переключатель цветов
+Task 1 - color switcher
 
-Задание 2 - таймер обратного отсчета
+Task 2 - countdown timer
 
-Задание 3 - генератор промисов
+Task 3 - promise generator
